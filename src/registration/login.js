@@ -26,7 +26,8 @@ function Login() {
         });
 
         if(res.data.status) {
-            navigate('/')
+            alert(res.data.token);
+            navigate('/');
         } else {
             toast.error(res.data.msg, {
                 position: "bottom-right",
