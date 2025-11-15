@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
-import { loginHost } from "../Hosts.js"
+import { loginHost } from "../utils/Hosts.js"
 import axios from 'axios';
 import { Toaster, toast } from "sonner"
 
@@ -26,7 +26,7 @@ function Login() {
         });
 
         if(res.data.status) {
-            alert(res.data.token);
+            localStorage.setItem("Chat-user", JSON.stringify(res.data.user))
             navigate('/');
         } else {
             toast.error(res.data.msg, {
@@ -43,7 +43,7 @@ function Login() {
   return (
     <div className="w-full h-[100vh] flex justify-center items-center">
         <form 
-            className="w-[20rem] h-auto flex flex-col items-center"
+            className="w-[20rem] max-md:w-[70%] max-sm:w-[90%] h-auto flex flex-col items-center"
             onSubmit={logInAccount}>
 
             <h1 className="font-bold mr-auto text-xl text-gray-800">

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import { Toaster, toast } from "sonner"
-import { registerHost } from "../Hosts.js"
+import { registerHost } from "../utils/Hosts.js"
 
 function Register() {
   const navigate = useNavigate();
@@ -30,6 +30,7 @@ function Register() {
                 });
 
             if(res.data.status) {
+                localStorage.setItem("Chat-user", JSON.stringify(res.data.user))
                 navigate('/')
             } else {
                 toast.error(res.data.msg, {
